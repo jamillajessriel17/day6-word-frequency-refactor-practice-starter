@@ -30,11 +30,10 @@ public class WordFrequencyGame {
                     WordFrequencyInfo wordFrequencyInfo = new WordFrequencyInfo(entry.getKey(), entry.getValue().size());
                     frequencyInfoList.add(wordFrequencyInfo);
                 }
-                wordFrequencyInfoList = frequencyInfoList;
 
                 sort(frequencyInfoList);
 
-                return generatePrintLines(wordFrequencyInfoList);
+                return generatePrintLines(frequencyInfoList);
             } catch (Exception e) {
                 return CALCULATE_ERROR;
             }
