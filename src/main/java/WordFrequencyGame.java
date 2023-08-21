@@ -44,12 +44,8 @@ public class WordFrequencyGame {
     private static List<WordFrequencyInfo> getWordFrequencyInfos(String inputStr) {
         //split the input string with 1 to n pieces of spaces
         String[] words = inputStr.split(SPACE_DELIMITER);
-
         List<WordFrequencyInfo> wordFrequencyInfoList = new ArrayList<>();
-        for (String word : words) {
-            WordFrequencyInfo wordFrequencyInfo = new WordFrequencyInfo(word, 1);
-            wordFrequencyInfoList.add(wordFrequencyInfo);
-        }
+        List.of(words).forEach(word -> wordFrequencyInfoList.add(new WordFrequencyInfo(word, 1)));
         return wordFrequencyInfoList;
     }
 
@@ -61,7 +57,6 @@ public class WordFrequencyGame {
 
     private Map<String, List<WordFrequencyInfo>> getListMap(List<WordFrequencyInfo> wordFrequencyInfoList) {
         Map<String, List<WordFrequencyInfo>> wordAndWordFrequencyInfoMap = new HashMap<>();
-
         for (WordFrequencyInfo wordFrequencyInfo : wordFrequencyInfoList) {
             if (!wordAndWordFrequencyInfoMap.containsKey(wordFrequencyInfo.getWord())) {
                 List<WordFrequencyInfo> frequencyInfoList = new ArrayList<>();
