@@ -25,11 +25,7 @@ public class WordFrequencyGame {
                 //get the map for the next step of sizing the same word
                 Map<String, List<WordFrequencyInfo>> wordFrequencyMap = getListMap(wordFrequencyInfoList);
 
-                List<WordFrequencyInfo> frequencyInfoList = new ArrayList<>();
-                for (Map.Entry<String, List<WordFrequencyInfo>> entry : wordFrequencyMap.entrySet()) {
-                    WordFrequencyInfo wordFrequencyInfo = new WordFrequencyInfo(entry.getKey(), entry.getValue().size());
-                    frequencyInfoList.add(wordFrequencyInfo);
-                }
+                List<WordFrequencyInfo> frequencyInfoList = updateWordFrequencyInfos(wordFrequencyMap);
 
                 sort(frequencyInfoList);
 
@@ -38,6 +34,14 @@ public class WordFrequencyGame {
                 return CALCULATE_ERROR;
             }
         }
+    }
+    private static List<WordFrequencyInfo> updateWordFrequencyInfos(Map<String, List<WordFrequencyInfo>> wordFrequencyMap) {
+        List<WordFrequencyInfo> frequencyInfoList = new ArrayList<>();
+        for (Map.Entry<String, List<WordFrequencyInfo>> entry : wordFrequencyMap.entrySet()) {
+            WordFrequencyInfo wordFrequencyInfo = new WordFrequencyInfo(entry.getKey(), entry.getValue().size());
+            frequencyInfoList.add(wordFrequencyInfo);
+        }
+        return frequencyInfoList;
     }
 
     private static void sort(List<WordFrequencyInfo> frequencyInfoList) {
