@@ -42,9 +42,8 @@ public class WordFrequencyGame {
     }
 
     private static List<String> getWords(String inputString) {
-        String[] words = inputString.split(SPACE_DELIMITER);
 
-        return new ArrayList<>(List.of(words));
+        return new ArrayList<>(List.of(inputString.split(SPACE_DELIMITER)));
     }
 
     private static String generatePrintLines(List<WordFrequencyInfo> wordFrequencyInfoList) {
