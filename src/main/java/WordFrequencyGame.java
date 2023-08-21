@@ -32,13 +32,17 @@ public class WordFrequencyGame {
                 }
                 wordFrequencyInfoList = frequencyInfoList;
 
-                frequencyInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+                sort(frequencyInfoList);
 
                 return generatePrintLines(wordFrequencyInfoList);
             } catch (Exception e) {
                 return CALCULATE_ERROR;
             }
         }
+    }
+
+    private static void sort(List<WordFrequencyInfo> frequencyInfoList) {
+        frequencyInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
     }
 
     private static List<WordFrequencyInfo> getWordFrequencyInfos(String inputStr) {
