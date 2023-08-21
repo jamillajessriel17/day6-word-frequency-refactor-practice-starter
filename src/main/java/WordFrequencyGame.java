@@ -31,15 +31,6 @@ public class WordFrequencyGame {
         return words.size() == 1;
     }
 
-    private static List<WordFrequencyInfo> updateWordFrequencyInfos(Map<String, Integer> wordFrequencyMap) {
-        List<WordFrequencyInfo> frequencyInfoList = new ArrayList<>();
-        for (Map.Entry<String, Integer> wordFrequency : wordFrequencyMap.entrySet()) {
-            WordFrequencyInfo wordFrequencyInfo = new WordFrequencyInfo(wordFrequency.getKey(), wordFrequency.getValue());
-            frequencyInfoList.add(wordFrequencyInfo);
-        }
-        return frequencyInfoList;
-    }
-
     private static void sort(List<WordFrequencyInfo> frequencyInfoList) {
         frequencyInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
     }

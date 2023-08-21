@@ -1,14 +1,10 @@
 public class WordFrequencyInfo {
     private final String word;
-    private int count;
+    private final int count;
 
     public WordFrequencyInfo(String word, int count) {
         this.word = word;
         this.count = count;
-    }
-
-    public WordFrequencyInfo(String word) {
-        this.word = word;
     }
 
     public String getWord() {
