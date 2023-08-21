@@ -16,7 +16,7 @@ public class WordFrequencyGame {
             return inputString + SPACE_ONE;
         }
         try {
-            List<WordFrequencyInfo> wordFrequencyInfoList = updateWordFrequencyInfo(words);
+            List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfoList(words);
             sort(wordFrequencyInfoList);
             return generatePrintLines(wordFrequencyInfoList);
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class WordFrequencyGame {
                 .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
 
-    private List<WordFrequencyInfo> updateWordFrequencyInfo(List<String> words) {
+    private List<WordFrequencyInfo> getWordFrequencyInfoList(List<String> words) {
         Set<String> distinctWords = new HashSet<>(words);
         List<WordFrequencyInfo> wordFrequencyInfoList = new ArrayList<>();
         distinctWords.forEach(word -> wordFrequencyInfoList
