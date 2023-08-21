@@ -11,12 +11,12 @@ public class WordFrequencyGame {
     public static final String SPACE_CHAR = " ";
     public static final String CALCULATE_ERROR = "Calculate Error";
 
-    public String getResult(String inputStr) {
-        if (inputStr.split(SPACE_DELIMITER).length == 1) {
-            return inputStr + " 1";
+    public String getResult(String inputString) {
+        if (inputString.split(SPACE_DELIMITER).length == 1) {
+            return inputString + " 1";
         }
         try {
-            List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfos(inputStr);
+            List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfos(inputString);
             Map<String, Integer> wordFrequencyMap = getListMap(wordFrequencyInfoList);
             List<WordFrequencyInfo> frequencyInfoList = updateWordFrequencyInfos(wordFrequencyMap);
 
