@@ -17,7 +17,7 @@ public class WordFrequencyGame {
         }
         try {
             List<String> wordFrequencyInfoList = getWords(inputString);
-            Map<String, Integer> wordFrequencyMap = getListMap(wordFrequencyInfoList);
+            Map<String, Integer> wordFrequencyMap = getWordAndOccurenceMap(wordFrequencyInfoList);
             List<WordFrequencyInfo> frequencyInfoList = updateWordFrequencyInfos(wordFrequencyMap);
 
             sort(frequencyInfoList);
@@ -52,7 +52,7 @@ public class WordFrequencyGame {
                 .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
 
-    private Map<String, Integer> getListMap(List<String> words) {
+    private Map<String, Integer> getWordAndOccurenceMap(List<String> words) {
         Map<String, Integer> wordAndWordFrequencyInfoMap = new HashMap<>();
 
         words.forEach(word -> {
