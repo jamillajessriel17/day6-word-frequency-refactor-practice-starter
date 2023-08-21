@@ -24,19 +24,19 @@ public class WordFrequencyGame {
         }
     }
 
-    private static boolean hasSizeOf1(List<String> words) {
+    private boolean hasSizeOf1(List<String> words) {
         return words.size() == 1;
     }
 
-    private static void sort(List<WordFrequencyInfo> frequencyInfoList) {
+    private void sort(List<WordFrequencyInfo> frequencyInfoList) {
         frequencyInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
     }
 
-    private static List<String> splitWords(String inputString) {
+    private List<String> splitWords(String inputString) {
         return new ArrayList<>(List.of(inputString.split(SPACE_DELIMITER)));
     }
 
-    private static String generatePrintLines(List<WordFrequencyInfo> wordFrequencyInfoList) {
+    private String generatePrintLines(List<WordFrequencyInfo> wordFrequencyInfoList) {
         return wordFrequencyInfoList.stream()
                 .map((wordFrequencyInfo) -> wordFrequencyInfo.getWord() + SPACE_CHAR + wordFrequencyInfo.getWordCount())
                 .collect(Collectors.joining(NEW_LINE_DELIMITER));
