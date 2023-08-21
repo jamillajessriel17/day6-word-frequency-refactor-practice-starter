@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
 
@@ -51,12 +51,9 @@ public class WordFrequencyGame {
     }
 
     private static String generatePrintLines(List<WordFrequencyInfo> wordFrequencyInfoList) {
-        StringJoiner joiner = new StringJoiner(NEW_LINE_DELIMITER);
-        for (WordFrequencyInfo word : wordFrequencyInfoList) {
-            String wordFrequency = word.getWord() + SPACE_CHAR + word.getWordCount();
-            joiner.add(wordFrequency);
-        }
-        return joiner.toString();
+      return  wordFrequencyInfoList.stream()
+                .map((wordFrequencyInfo)->wordFrequencyInfo.getWord() + SPACE_CHAR + wordFrequencyInfo.getWordCount())
+                .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
 
 
