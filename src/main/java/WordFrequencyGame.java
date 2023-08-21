@@ -17,7 +17,7 @@ public class WordFrequencyGame {
         }
         try {
             List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfos(inputStr);
-            Map<String, List<WordFrequencyInfo>> wordFrequencyMap = getListMap(wordFrequencyInfoList);
+            Map<String, Integer> wordFrequencyMap = getListMap(wordFrequencyInfoList);
             List<WordFrequencyInfo> frequencyInfoList = updateWordFrequencyInfos(wordFrequencyMap);
 
             sort(frequencyInfoList);
@@ -28,10 +28,10 @@ public class WordFrequencyGame {
         }
     }
 
-    private static List<WordFrequencyInfo> updateWordFrequencyInfos(Map<String, List<WordFrequencyInfo>> wordFrequencyMap) {
+    private static List<WordFrequencyInfo> updateWordFrequencyInfos(Map<String, Integer> wordFrequencyMap) {
         List<WordFrequencyInfo> frequencyInfoList = new ArrayList<>();
-        for (Map.Entry<String, List<WordFrequencyInfo>> entry : wordFrequencyMap.entrySet()) {
-            WordFrequencyInfo wordFrequencyInfo = new WordFrequencyInfo(entry.getKey(), entry.getValue().size());
+        for (Map.Entry<String, Integer> wordFrequency : wordFrequencyMap.entrySet()) {
+            WordFrequencyInfo wordFrequencyInfo = new WordFrequencyInfo(wordFrequency.getKey(), wordFrequency.getValue());
             frequencyInfoList.add(wordFrequencyInfo);
         }
         return frequencyInfoList;
@@ -54,16 +54,14 @@ public class WordFrequencyGame {
                 .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
 
-    private Map<String, List<WordFrequencyInfo>> getListMap(List<WordFrequencyInfo> wordFrequencyInfoList) {
-        Map<String, List<WordFrequencyInfo>> wordAndWordFrequencyInfoMap = new HashMap<>();
+    private Map<String, Integer> getListMap(List<WordFrequencyInfo> wordFrequencyInfoList) {
+        Map<String, Integer> wordAndWordFrequencyInfoMap = new HashMap<>();
 
         wordFrequencyInfoList.forEach(wordFrequencyInfo -> {
             if (!wordAndWordFrequencyInfoMap.containsKey(wordFrequencyInfo.getWord())) {
-                List<WordFrequencyInfo> frequencyInfoList = new ArrayList<>();
-                frequencyInfoList.add(wordFrequencyInfo);
-                wordAndWordFrequencyInfoMap.put(wordFrequencyInfo.getWord(), frequencyInfoList);
+                wordAndWordFrequencyInfoMap.put(wordFrequencyInfo.getWord(), 1);
             } else {
-                wordAndWordFrequencyInfoMap.get(wordFrequencyInfo.getWord()).add(wordFrequencyInfo);
+                wordAndWordFrequencyInfoMap.computeIfPresent(wordFrequencyInfo.getWord(), (key, value) -> value + 1);
             }
         });
 
