@@ -20,14 +20,7 @@ public class WordFrequencyGame {
 
             try {
 
-                //split the input string with 1 to n pieces of spaces
-                String[] words = inputStr.split(SPACE_DELIMITER);
-
-                List<WordFrequencyInfo> wordFrequencyInfoList = new ArrayList<>();
-                for (String word : words) {
-                    WordFrequencyInfo wordFrequencyInfo = new WordFrequencyInfo(word, 1);
-                    wordFrequencyInfoList.add(wordFrequencyInfo);
-                }
+                List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfos(inputStr);
 
                 //get the map for the next step of sizing the same word
                 Map<String, List<WordFrequencyInfo>> wordFrequencyMap = getListMap(wordFrequencyInfoList);
@@ -46,6 +39,18 @@ public class WordFrequencyGame {
                 return CALCULATE_ERROR;
             }
         }
+    }
+
+    private static List<WordFrequencyInfo> getWordFrequencyInfos(String inputStr) {
+        //split the input string with 1 to n pieces of spaces
+        String[] words = inputStr.split(SPACE_DELIMITER);
+
+        List<WordFrequencyInfo> wordFrequencyInfoList = new ArrayList<>();
+        for (String word : words) {
+            WordFrequencyInfo wordFrequencyInfo = new WordFrequencyInfo(word, 1);
+            wordFrequencyInfoList.add(wordFrequencyInfo);
+        }
+        return wordFrequencyInfoList;
     }
 
     private static String generatePrintLines(List<WordFrequencyInfo> wordFrequencyInfoList) {
