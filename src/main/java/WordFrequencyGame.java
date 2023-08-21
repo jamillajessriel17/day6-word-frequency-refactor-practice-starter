@@ -8,7 +8,6 @@ public class WordFrequencyGame {
     public static final String SPACE_CHAR = " ";
     public static final String CALCULATE_ERROR = "Calculate Error";
 
-
     public String getResult(String inputString) {
         List<String> words = splitWords(inputString);
 
@@ -16,12 +15,9 @@ public class WordFrequencyGame {
             return inputString + " 1";
         }
         try {
-
-            List<WordFrequencyInfo> wordFrequencyInfo = updateWordFrequencyInfo(words);
-
-            sort(wordFrequencyInfo);
-
-            return generatePrintLines(wordFrequencyInfo);
+            List<WordFrequencyInfo> wordFrequencyInfoList = updateWordFrequencyInfo(words);
+            sort(wordFrequencyInfoList);
+            return generatePrintLines(wordFrequencyInfoList);
         } catch (Exception e) {
             return CALCULATE_ERROR;
         }
