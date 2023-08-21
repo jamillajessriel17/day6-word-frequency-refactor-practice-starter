@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
@@ -16,13 +13,12 @@ public class WordFrequencyGame {
             return inputString + " 1";
         }
         try {
-            List<String> wordFrequencyInfoList = getWords(inputString);
-            Map<String, Integer> wordFrequencyMap = getWordAndOccurenceMap(wordFrequencyInfoList);
-            List<WordFrequencyInfo> frequencyInfoList = updateWordFrequencyInfos(wordFrequencyMap);
+            List<String> wordList = getWords(inputString);
+            List<WordFrequencyInfo> wordFrequencyInfo = updateWordFrequencyInfo(wordList);
 
-            sort(frequencyInfoList);
+            sort(wordFrequencyInfo);
 
-            return generatePrintLines(frequencyInfoList);
+            return generatePrintLines(wordFrequencyInfo);
         } catch (Exception e) {
             return CALCULATE_ERROR;
         }
@@ -52,17 +48,11 @@ public class WordFrequencyGame {
                 .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
 
-    private Map<String, Integer> getWordAndOccurenceMap(List<String> words) {
-        Map<String, Integer> wordAndWordFrequencyInfoMap = new HashMap<>();
+    private List<WordFrequencyInfo> updateWordFrequencyInfo(List<String> words) {
+        Set<String> distinctWords = new HashSet<>(words);
+        List<WordFrequencyInfo> wordFrequencyInfoSet = new ArrayList<>();
+        distinctWords.forEach(word -> wordFrequencyInfoSet.add(new WordFrequencyInfo(word, Collections.frequency(words, word))));
 
-        words.forEach(word -> {
-            if (!wordAndWordFrequencyInfoMap.containsKey(word)) {
-                wordAndWordFrequencyInfoMap.put(word, 1);
-            } else {
-                wordAndWordFrequencyInfoMap.computeIfPresent(word, (key, value) -> value + 1);
-            }
-        });
-
-        return wordAndWordFrequencyInfoMap;
+        return wordFrequencyInfoSet;
     }
 }
