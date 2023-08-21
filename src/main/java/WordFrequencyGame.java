@@ -12,7 +12,7 @@ public class WordFrequencyGame {
     public String getResult(String inputString) {
         List<String> words = splitWords(inputString);
 
-        if (inputString.split(SPACE_DELIMITER).length == 1) {
+        if (hasSizeOf1(words)) {
             return inputString + " 1";
         }
         try {
@@ -25,6 +25,10 @@ public class WordFrequencyGame {
         } catch (Exception e) {
             return CALCULATE_ERROR;
         }
+    }
+
+    private static boolean hasSizeOf1(List<String> words) {
+        return words.size() == 1;
     }
 
     private static List<WordFrequencyInfo> updateWordFrequencyInfos(Map<String, Integer> wordFrequencyMap) {
