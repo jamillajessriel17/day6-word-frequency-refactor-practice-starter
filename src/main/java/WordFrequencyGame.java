@@ -43,19 +43,16 @@ public class WordFrequencyGame {
 
                 return generatePrintLines(wordFrequencyInfoList);
             } catch (Exception e) {
-
-
                 return CALCULATE_ERROR;
             }
         }
     }
 
     private static String generatePrintLines(List<WordFrequencyInfo> wordFrequencyInfoList) {
-      return  wordFrequencyInfoList.stream()
-                .map((wordFrequencyInfo)->wordFrequencyInfo.getWord() + SPACE_CHAR + wordFrequencyInfo.getWordCount())
+        return wordFrequencyInfoList.stream()
+                .map((wordFrequencyInfo) -> wordFrequencyInfo.getWord() + SPACE_CHAR + wordFrequencyInfo.getWordCount())
                 .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
-
 
     private Map<String, List<WordFrequencyInfo>> getListMap(List<WordFrequencyInfo> wordFrequencyInfoList) {
         Map<String, List<WordFrequencyInfo>> map = new HashMap<>();
@@ -68,10 +65,6 @@ public class WordFrequencyGame {
                 map.get(wordFrequencyInfo.getWord()).add(wordFrequencyInfo);
             }
         }
-
-
         return map;
     }
-
-
 }
