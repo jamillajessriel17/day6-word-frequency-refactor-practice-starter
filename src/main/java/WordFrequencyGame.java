@@ -12,26 +12,22 @@ public class WordFrequencyGame {
     public static final String CALCULATE_ERROR = "Calculate Error";
 
     public String getResult(String inputStr) {
-
-
         if (inputStr.split(SPACE_DELIMITER).length == 1) {
             return inputStr + " 1";
-        } else {
+        }
+        try {
+            List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfos(inputStr);
+            Map<String, List<WordFrequencyInfo>> wordFrequencyMap = getListMap(wordFrequencyInfoList);
+            List<WordFrequencyInfo> frequencyInfoList = updateWordFrequencyInfos(wordFrequencyMap);
 
-            try {
+            sort(frequencyInfoList);
 
-                List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfos(inputStr);
-                Map<String, List<WordFrequencyInfo>> wordFrequencyMap = getListMap(wordFrequencyInfoList);
-                List<WordFrequencyInfo> frequencyInfoList = updateWordFrequencyInfos(wordFrequencyMap);
-
-                sort(frequencyInfoList);
-
-                return generatePrintLines(frequencyInfoList);
-            } catch (Exception e) {
-                return CALCULATE_ERROR;
-            }
+            return generatePrintLines(frequencyInfoList);
+        } catch (Exception e) {
+            return CALCULATE_ERROR;
         }
     }
+
     private static List<WordFrequencyInfo> updateWordFrequencyInfos(Map<String, List<WordFrequencyInfo>> wordFrequencyMap) {
         List<WordFrequencyInfo> frequencyInfoList = new ArrayList<>();
         for (Map.Entry<String, List<WordFrequencyInfo>> entry : wordFrequencyMap.entrySet()) {
