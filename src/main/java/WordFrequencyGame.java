@@ -44,7 +44,7 @@ public class WordFrequencyGame {
     private static List<WordFrequencyInfo> getWordFrequencyInfos(String inputStr) {
         String[] words = inputStr.split(SPACE_DELIMITER);
         List<WordFrequencyInfo> wordFrequencyInfoList = new ArrayList<>();
-        List.of(words).forEach(word -> wordFrequencyInfoList.add(new WordFrequencyInfo(word, 1)));
+        List.of(words).forEach(word -> wordFrequencyInfoList.add(new WordFrequencyInfo(word)));
         return wordFrequencyInfoList;
     }
 
