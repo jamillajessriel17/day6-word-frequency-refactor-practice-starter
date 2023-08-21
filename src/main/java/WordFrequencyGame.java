@@ -44,10 +44,10 @@ public class WordFrequencyGame {
 
     private List<WordFrequencyInfo> updateWordFrequencyInfo(List<String> words) {
         Set<String> distinctWords = new HashSet<>(words);
-        List<WordFrequencyInfo> wordFrequencyInfoSet = new ArrayList<>();
-        distinctWords.forEach(word -> wordFrequencyInfoSet.add(new WordFrequencyInfo(word, Collections.frequency(words, word))));
+        List<WordFrequencyInfo> wordFrequencyInfoList = new ArrayList<>();
+        distinctWords.forEach(word -> wordFrequencyInfoList
+                .add(new WordFrequencyInfo(word, Collections.frequency(words, word))));
 
-
-        return wordFrequencyInfoSet;
+        return wordFrequencyInfoList;
     }
 }
