@@ -8,13 +8,16 @@ public class WordFrequencyGame {
     public static final String SPACE_CHAR = " ";
     public static final String CALCULATE_ERROR = "Calculate Error";
 
+
     public String getResult(String inputString) {
+        List<String> words = splitWords(inputString);
+
         if (inputString.split(SPACE_DELIMITER).length == 1) {
             return inputString + " 1";
         }
         try {
-            List<String> wordList = getWords(inputString);
-            List<WordFrequencyInfo> wordFrequencyInfo = updateWordFrequencyInfo(wordList);
+
+            List<WordFrequencyInfo> wordFrequencyInfo = updateWordFrequencyInfo(words);
 
             sort(wordFrequencyInfo);
 
@@ -37,8 +40,7 @@ public class WordFrequencyGame {
         frequencyInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
     }
 
-    private static List<String> getWords(String inputString) {
-
+    private static List<String> splitWords(String inputString) {
         return new ArrayList<>(List.of(inputString.split(SPACE_DELIMITER)));
     }
 
