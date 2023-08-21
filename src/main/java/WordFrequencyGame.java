@@ -7,12 +7,13 @@ public class WordFrequencyGame {
     public static final String NEW_LINE_DELIMITER = "\n";
     public static final String SPACE_CHAR = " ";
     public static final String CALCULATE_ERROR = "Calculate Error";
+    public static final String SPACE_ONE = " 1";
 
     public String getResult(String inputString) {
         List<String> words = splitWords(inputString);
 
         if (hasSizeOf1(words)) {
-            return inputString + " 1";
+            return inputString + SPACE_ONE;
         }
         try {
             List<WordFrequencyInfo> wordFrequencyInfoList = updateWordFrequencyInfo(words);
@@ -45,6 +46,7 @@ public class WordFrequencyGame {
         Set<String> distinctWords = new HashSet<>(words);
         List<WordFrequencyInfo> wordFrequencyInfoSet = new ArrayList<>();
         distinctWords.forEach(word -> wordFrequencyInfoSet.add(new WordFrequencyInfo(word, Collections.frequency(words, word))));
+
 
         return wordFrequencyInfoSet;
     }
