@@ -16,7 +16,7 @@ public class WordFrequencyGame {
             return inputString + " 1";
         }
         try {
-            List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfos(inputString);
+            List<String> wordFrequencyInfoList = getWords(inputString);
             Map<String, Integer> wordFrequencyMap = getListMap(wordFrequencyInfoList);
             List<WordFrequencyInfo> frequencyInfoList = updateWordFrequencyInfos(wordFrequencyMap);
 
@@ -41,10 +41,10 @@ public class WordFrequencyGame {
         frequencyInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
     }
 
-    private static List<WordFrequencyInfo> getWordFrequencyInfos(String inputStr) {
+    private static List<String> getWords(String inputStr) {
         String[] words = inputStr.split(SPACE_DELIMITER);
-        List<WordFrequencyInfo> wordFrequencyInfoList = new ArrayList<>();
-        List.of(words).forEach(word -> wordFrequencyInfoList.add(new WordFrequencyInfo(word)));
+        List<String> wordFrequencyInfoList = new ArrayList<>();
+        wordFrequencyInfoList.addAll(List.of(words));
         return wordFrequencyInfoList;
     }
 
@@ -54,14 +54,14 @@ public class WordFrequencyGame {
                 .collect(Collectors.joining(NEW_LINE_DELIMITER));
     }
 
-    private Map<String, Integer> getListMap(List<WordFrequencyInfo> wordFrequencyInfoList) {
+    private Map<String, Integer> getListMap(List<String> words) {
         Map<String, Integer> wordAndWordFrequencyInfoMap = new HashMap<>();
 
-        wordFrequencyInfoList.forEach(wordFrequencyInfo -> {
-            if (!wordAndWordFrequencyInfoMap.containsKey(wordFrequencyInfo.getWord())) {
-                wordAndWordFrequencyInfoMap.put(wordFrequencyInfo.getWord(), 1);
+        words.forEach(word -> {
+            if (!wordAndWordFrequencyInfoMap.containsKey(word)) {
+                wordAndWordFrequencyInfoMap.put(word, 1);
             } else {
-                wordAndWordFrequencyInfoMap.computeIfPresent(wordFrequencyInfo.getWord(), (key, value) -> value + 1);
+                wordAndWordFrequencyInfoMap.computeIfPresent(word, (key, value) -> value + 1);
             }
         });
 
