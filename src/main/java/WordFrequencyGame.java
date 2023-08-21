@@ -41,11 +41,10 @@ public class WordFrequencyGame {
         frequencyInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
     }
 
-    private static List<String> getWords(String inputStr) {
-        String[] words = inputStr.split(SPACE_DELIMITER);
-        List<String> wordFrequencyInfoList = new ArrayList<>();
-        wordFrequencyInfoList.addAll(List.of(words));
-        return wordFrequencyInfoList;
+    private static List<String> getWords(String inputString) {
+        String[] words = inputString.split(SPACE_DELIMITER);
+
+        return new ArrayList<>(List.of(words));
     }
 
     private static String generatePrintLines(List<WordFrequencyInfo> wordFrequencyInfoList) {
